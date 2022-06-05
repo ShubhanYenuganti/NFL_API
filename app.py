@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 
@@ -55,6 +55,11 @@ class PlayerSchema(ma.Schema):
 # Init Schema
 player_schema = PlayerSchema()
 players_schema = PlayerSchema(many=True)
+
+# Get Home Page
+@app.route('/', methods = ['GET'])
+def get_home():
+    return render_template('index.html')
 
 # Get Player (Works)
 
@@ -138,6 +143,66 @@ def delete_player(id):
 
     return player_schema.jsonify(player)
 
+# Filter Get By Conference (Works)
+
+@app.route('/player/conference/<conf>', methods=['GET'])
+def get_player_conf(conf):
+    all_players = Player.query.all()
+    conf_players = []
+    
+    for player in all_players: 
+        if player.conf == conf:
+            conf_players.append(player)
+
+    result = players_schema.dump(conf_players)
+
+    return jsonify(result)
+
+
+# Filter Get By Division (Works)
+
+@app.route('/player/division/<div>', methods=['GET'])
+def get_player_div(div):
+    all_players = Player.query.all()
+    div_players = []
+    
+    for player in all_players: 
+        if player.division == div:
+            div_players.append(player)
+
+    result = players_schema.dump(div_players)
+
+    return jsonify(result)
+
+# Filter Get By Team (Works)
+
+@app.route('/player/team/<team>', methods=['GET'])
+def get_player_team(team):
+    all_players = Player.query.all()
+    team_players = []
+    
+    for player in all_players: 
+        if player.team == team:
+            team_players.append(player)
+
+    result = players_schema.dump(team_players)
+
+    return jsonify(result)
+
+# Filter Get By Position (Works)
+
+@app.route('/player/pos/<pos>', methods=['GET'])
+def get_player_pos(pos):
+    all_players = Player.query.all()
+    pos_players = []
+    
+    for player in all_players: 
+        if player.pos == pos:
+            pos_players.append(player)
+
+    result = players_schema.dump(pos_players)
+
+    return jsonify(result)
 
 # Run Server
 if __name__ == '__main__':
