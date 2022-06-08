@@ -1,2 +1,8 @@
 # NFL_API_Source_Code
- Source Code for my NFL Players API
+
+An NFL API containing all 32 teams' starting rosters with basic information on each player
+
+Data parsed from espn.com
+
+Can be accessed at : (https://f2cd-2601-646-8500-f220-ec92-5634-15a6-16d7.ngrok.io) when json-server is running
+Note: url changes after each run
