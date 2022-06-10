@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>NFL API</title>
+</head>
+
+<body>
+    <h1 class="h1">NFL API</h1>
+    <h2 class="h2">Welcome to my NFL API!</h2>
+    <p class="p">This API contains basic information about the starting rosters of all 32 NFL teams</p>
+    <h3 class="h3">Player</h3>
+    <form class="form1" id="frm1">
+        <input type="text" name="fname" value="Type Name" onkeydown="enterKeyPressed(event)"><br>
+    </form>
+
+    <script>
+        function enterKeyPressed(event) {
+            if (event.keyCode == 13) {
+                myFunction()
+            }
+        }
+        function myFunction() {
+            var x = document.getElementById("frm1").elements[0].value;
+            var text = "" + x;
+            window.open('http://localhost:4000/' + text)
+        }
+    </script>
+
+    <h3 class="h3">Position</h3>
+    <form class="form1" id="frm2">
+        <input type="text" name="fname" value="Type Position" onkeydown="enterKeyPressed1(event)"><br>
+    </form>
+
+    <script>
+        function enterKeyPressed1(event) {
+            if (event.keyCode == 13) {
+                myFunction1()
+            }
+        }
+        function myFunction1() {
+            var x = document.getElementById("frm2").elements[0].value;
+            var text = "" + x;
+            window.open('http://localhost:4000/all/' + text)
+        }
+    </script>
+
+    <h3 class="h3">Team</h3>
+    <form class="form1" id="frm3">
+        <input type="text" name="fname" value="Type Team" onkeydown="enterKeyPressed2(event)"><br>
+    </form>
+
+    <script>
+        function enterKeyPressed2(event) {
+            if (event.keyCode == 13) {
+                myFunction2()
+            }
+        }
+        function myFunction2() {
+            var x = document.getElementById("frm3").elements[0].value;
+            var text = "" + x;
+            window.open('http://localhost:4000/team/' + text)
+        }
+    </script>
+
+    <div class="dropdown">
+        <button class="dropbtn">Divisions</button>
+        <div class="dropdown-content">
+            <a href="/Conference/AFC/AFC East" target="_blank">AFC East</a>
+            <a href="/Conference/AFC/AFC West" target="_blank">AFC West</a>
+            <a href="/Conference/AFC/AFC North" target="_blank">AFC North</a>
+            <a href="/Conference/AFC/AFC South" target="_blank">AFC South</a>
+            <a href="/Conference/AFC/NFC East" target="_blank">NFC East</a>
+            <a href="/Conference/AFC/NFC West" target="_blank">NFC West</a>
+            <a href="/Conference/AFC/NFC North" target="_blank">NFC North</a>
+            <a href="/Conference/AFC/NFC South" target="_blank">NFC South</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Conferences</button>
+        <div class="dropdown-content">
+            <a href="/Conference/AFC" target="_blank">AFC</a>
+            <a href="/Conference/NFC" target="_blank">NFC</a>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
