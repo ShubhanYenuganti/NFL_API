@@ -5,7 +5,7 @@ var data = JSON.parse(json)
 
 const express = require('express')
 const app = express();
-const port = 4000;
+const port = 80;
 const cors = require('cors');
 const res = require('express/lib/response');
 
@@ -49,7 +49,7 @@ function searchTeamHelper(request) {
         return searchTeamWithDivisionHelper(request, data.Conferences[1].Divisions[0])
     }
     else if (!searchTeamWithDivisionHelper(request, data.Conferences[1].Divisions[1]).status)
-    {
+    {        
         return searchTeamWithDivisionHelper(request, data.Conferences[1].Divisions[1])
     }
     else if (!searchTeamWithDivisionHelper(request, data.Conferences[1].Divisions[2]).status)
@@ -148,7 +148,7 @@ function searchByNameHelper(request) {
         return searchNameHelper(request, data.Conferences[1].Divisions[0].teams[3])
     }
     else if (!searchNameHelper(request, data.Conferences[1].Divisions[1].teams[0]).status) {
-        return searchNameHelper(request, data.Conferences[1].Divisions[1].teams[1])
+        return searchNameHelper(request, data.Conferences[1].Divisions[1].teams[0])
     }
     else if (!searchNameHelper(request, data.Conferences[1].Divisions[1].teams[1]).status) {
         return searchNameHelper(request, data.Conferences[1].Divisions[1].teams[1])
@@ -353,6 +353,49 @@ function searchPosHelper(request, team) {
     if (req == "WR") {
         var reply = [team.player[2], team.player[3], team.player[4]]
     }
+    else if (req == "T") {
+        var reply = [team.player[6], team.player[10]]
+    }
+    else if (req == "G") {
+        var reply = [team.player[7], team.player[9]]
+    }
+    else if (req == "DE")
+    {   
+        if (team.name == "Miami Dolphins" || team.name == "Denver Broncos" || team.name == "Los Angeles Chargers" || team.name == "Baltimore Ravens" || team.name == "Pittsburgh Steelers" || team.name == "Jacksonville Jaguars" || team.name == "Tennessee Titans" || team.name == "New York Giants" || team.name == "Arizona Cardinals" || team.name == "Los Angeles Rams" || team.name == "Green Bay Packers" || team.name == "Minnesota Vikings" || team.name == "Atlanta Falcons" || team.name == "Tampa Bay Buccaneers")
+        {
+            var reply = [team.player[11], team.player[13]]
+        }
+        else {
+            var reply = [team.player[11], team.player[14]]
+        }
+    }
+    else if (req == "DT") {
+        if (team.name == "Miami Dolphins" || team.name == "Denver Broncos" || team.name == "Los Angeles Chargers" || team.name == "Baltimore Ravens" || team.name == "Pittsburgh Steelers" || team.name == "Jacksonville Jaguars" || team.name == "Tennessee Titans" || team.name == "New York Giants" || team.name == "Arizona Cardinals" || team.name == "Los Angeles Rams" || team.name == "Green Bay Packers" || team.name == "Minnesota Vikings" || team.name == "Atlanta Falcons" || team.name == "Tampa Bay Buccaneers")
+        {
+            var reply = [team.player[12]]
+        }
+        else {
+            var reply = [team.player[12], team.player[13]]
+        }
+    }
+    else if (req == "LB") {
+        if (team.name == "Miami Dolphins" || team.name == "Denver Broncos" || team.name == "Los Angeles Chargers" || team.name == "Baltimore Ravens" || team.name == "Pittsburgh Steelers" || team.name == "Jacksonville Jaguars" || team.name == "Tennessee Titans" || team.name == "New York Giants" || team.name == "Arizona Cardinals" || team.name == "Los Angeles Rams" || team.name == "Green Bay Packers" || team.name == "Minnesota Vikings" || team.name == "Atlanta Falcons" || team.name == "Tampa Bay Buccaneers")
+        {
+            var reply = [team.player[14], team.player[15], team.player[16], team.player[17]]
+        }
+        else {
+            var reply = [team.player[15], team.player[16], team.player[17]]
+        }
+    }
+    else if (req == "CB")
+    {
+        var reply = [team.player[18], team.player[21]]
+    }
+    else if (req == "S")
+    {
+        var reply = [team.player[19], team.player[20]]
+    }
+
     else {
         if (req == team.player[0].position) {
             var reply = team.player[0]
@@ -360,80 +403,17 @@ function searchPosHelper(request, team) {
         else if (req == team.player[1].position) {
             var reply = team.player[1]
         }
-        else if (req == team.player[2].position) {
-            var reply = team.player[2]
-        }
-        else if (req == team.player[3].position) {
-            var reply = team.player[3]
-        }
-        else if (req == team.player[4].position) {
-            var reply = team.player[4]
-        }
         else if (req == team.player[5].position) {
             var reply = team.player[5]
         }
-        else if (req == team.player[6].position) {
-            var reply = team.player[6]
-        }
-        else if (req == team.player[7].position) {
-            var reply = team.player[7]
-        }
         else if (req == team.player[8].position) {
             var reply = team.player[8]
-        }
-        else if (req == team.player[9].position) {
-            var reply = team.player[9]
-        }
-        else if (req == team.player[10].position) {
-            var reply = team.player[10]
-        }
-        else if (req == team.player[11].position) {
-            var reply = team.player[11]
-        }
-        else if (req == team.player[12].position) {
-            var reply = team.player[12]
-        }
-        else if (req == team.player[13].position) {
-            var reply = team.player[13]
-        }
-        else if (req == team.player[14].position) {
-            var reply = team.player[14]
-        }
-        else if (req == team.player[15].position) {
-            var reply = team.player[15]
-        }
-        else if (req == team.player[16].position) {
-            var reply = team.player[16]
-        }
-        else if (req == team.player[17].position) {
-            var reply = team.player[17]
-        }
-        else if (req == team.player[18].position) {
-            var reply = team.player[18]
-        }
-        else if (req == team.player[19].position) {
-            var reply = team.player[19]
-        }
-        else if (req == team.player[20].position) {
-            var reply = team.player[20]
-        }
-        else if (req == team.player[21].position) {
-            var reply = team.player[21]
         }
         else if (req == team.player[22].position) {
             var reply = team.player[22]
         }
         else if (req == team.player[23].position) {
             var reply = team.player[23]
-        }
-        else if (req == team.player[24].position) {
-            var reply = team.player[24]
-        }
-        else if (req == team.player[25].position) {
-            var reply = team.player[25]
-        }
-        else if (req == team.player[26].position) {
-            var reply = team.player[26]
         }
         else {
             var reply = {
@@ -531,15 +511,6 @@ function searchNameHelper(request, team) {
     }
     else if (req == team.player[23].name) {
         var reply = team.player[23]
-    }
-    else if (req == team.player[24].name) {
-        var reply = team.player[24]
-    }
-    else if (req == team.player[25].name) {
-        var reply = team.player[25]
-    }
-    else if (req == team.player[26].name) {
-        var reply = team.player[26]
     }
     else {
         var reply = {
